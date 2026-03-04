@@ -266,39 +266,3 @@
         }
 
         function markInput(id, isCorrect) {
-            const el = document.getElementById(id);
-            el.className = `w-full p-2 text-center outline-none text-sm ${isCorrect ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`;
-        }
-
-        function downloadReport() {
-            const name = document.getElementById('studentName').value;
-            const score = document.getElementById('displayScore').innerText;
-            const date = new Date().toLocaleString('uk-UA');
-
-            let content = `ЗВІТ ЛАБОРАТОРНОЇ РОБОТИ №7 (ФІЗИКА)\n`;
-            content += `Учень/Учениця: ${name}\nДата: ${date}\nПІДСУМКОВА ОЦІНКА: ${score} / 12\n\n`;
-            
-            content += `I. ТАБЛИЦЯ (ЗАЛЕЖНІСТЬ ВІД ТИСКУ):\n`;
-            resultsT1.forEach(r => content += ` - ${r.cond}: mu=${r.mu || '—'} [${r.isCorrect ? 'OK' : 'ERR'}]\n`);
-            
-            content += `\nII. ТАБЛИЦЯ (ЗАЛЕЖНІСТЬ ВІД ПОВЕРХОНЬ):\n`;
-            resultsT2.forEach(r => content += ` - ${r.surf}: mu=${r.mu || '—'} [${r.isCorrect ? 'OK' : 'ERR'}]\n`);
-            
-            content += `\nIII. ВИСНОВКИ:\n`;
-            content += ` 1. Від ваги: ${document.getElementById('q1').value}\n`;
-            content += ` 2. Від площі: ${document.getElementById('q2').value}\n`;
-            content += ` 3. Від матеріалу: ${document.getElementById('q3').value}`;
-
-            const element = document.createElement('a');
-            const file = new Blob([content], {type: 'text/plain'});
-            element.href = URL.createObjectURL(file);
-            element.download = `Lab7_${name.replace(/\s+/g, '_')}.txt`;
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
-        }
-
-        window.onload = init;
-    </script>
-</body>
-</html>
