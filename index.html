@@ -18,6 +18,11 @@
             -webkit-appearance: none;
             margin: 0;
         }
+        /* Гарантоване відображення інпутів на мобільних */
+        input[type="number"] {
+            min-height: 40px;
+            -moz-appearance: textfield;
+        }
     </style>
 </head>
 <body class="p-2 md:p-4 text-slate-900">
@@ -25,16 +30,16 @@
     <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden border border-stone-300">
         
         <!-- Header -->
-        <div class="bg-slate-800 p-6 text-white border-b-4 border-amber-600">
+        <div class="bg-slate-800 p-4 md:p-6 text-white border-b-4 border-amber-600">
             <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
                 <div>
-                    <h1 class="text-2xl md:text-3xl font-bold mb-1 tracking-tight uppercase">Лабораторна робота №7</h1>
-                    <p class="text-amber-400 text-base md:text-lg italic tracking-wide">«Визначення коефіцієнта тертя ковзання»</p>
+                    <h1 class="text-xl md:text-3xl font-bold mb-1 tracking-tight uppercase">Лабораторна робота №7</h1>
+                    <p class="text-amber-400 text-sm md:text-lg italic tracking-wide">«Визначення коефіцієнта тертя ковзання»</p>
                 </div>
-                <div class="bg-white/10 p-3 rounded border border-white/20 text-center min-w-[100px]">
-                    <span class="block text-[10px] uppercase font-bold tracking-widest opacity-60 mb-1">Оцінка</span>
-                    <span id="displayScore" class="text-3xl font-bold text-amber-500">0</span>
-                    <small class="text-base opacity-40">/ 12</small>
+                <div class="bg-white/10 p-2 md:p-3 rounded border border-white/20 text-center min-w-[80px]">
+                    <span class="block text-[8px] md:text-[10px] uppercase font-bold tracking-widest opacity-60 mb-1">Оцінка</span>
+                    <span id="displayScore" class="text-2xl md:text-3xl font-bold text-amber-500">0</span>
+                    <small class="text-sm md:text-base opacity-40">/ 12</small>
                 </div>
             </div>
         </div>
@@ -42,30 +47,30 @@
         <div class="p-4 md:p-8">
             
             <!-- Student Info -->
-            <div class="mb-8 p-4 bg-stone-50 border border-stone-200 rounded shadow-sm">
+            <div class="mb-6 p-4 bg-stone-50 border border-stone-200 rounded shadow-sm">
                 <label class="block text-[10px] font-bold uppercase text-stone-500 mb-1 tracking-widest">Виконав(ла) учень/учениця:</label>
                 <input type="text" id="studentName" placeholder="Впишіть Прізвище та Ім'я" 
-                    class="w-full p-2 bg-transparent border-b-2 border-stone-300 outline-none transition-all text-xl font-bold italic focus:border-amber-600">
+                    class="w-full p-2 bg-transparent border-b-2 border-stone-300 outline-none transition-all text-lg md:text-xl font-bold italic focus:border-amber-600">
             </div>
 
-            <div class="space-y-10">
+            <div class="space-y-8">
                 <!-- Table 1 -->
                 <section>
-                    <h3 class="text-lg font-bold mb-4 academic-border pl-4 text-slate-800 uppercase tracking-tight">
+                    <h3 class="text-base md:text-lg font-bold mb-4 academic-border pl-4 text-slate-800 uppercase tracking-tight">
                         I. Дослідження залежності F<sub>тер</sub> від сили тиску N
                     </h3>
-                    <div class="overflow-x-auto">
-                        <table class="w-full border-collapse border border-stone-400 text-center">
-                            <thead class="bg-stone-100 text-stone-700 text-xs">
+                    <div class="overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0">
+                        <table class="w-full border-collapse border border-stone-400 text-center min-w-[300px]">
+                            <thead class="bg-stone-100 text-stone-700 text-[10px] md:text-xs">
                                 <tr>
-                                    <th class="border border-stone-400 p-3 text-left">Умови досліду</th>
-                                    <th class="border border-stone-400 p-3 w-28">Сила тертя<br>F<sub>тер</sub>, Н</th>
-                                    <th class="border border-stone-400 p-3 w-28">Сила тиску<br>N, Н</th>
-                                    <th class="border border-stone-400 p-3 text-amber-900 font-bold italic w-28">μ = F<sub>тер</sub> / N</th>
+                                    <th class="border border-stone-400 p-2 text-left">Умови</th>
+                                    <th class="border border-stone-400 p-2 w-20 md:w-28">F<sub>тер</sub>, Н</th>
+                                    <th class="border border-stone-400 p-2 w-20 md:w-28">N, Н</th>
+                                    <th class="border border-stone-400 p-2 text-amber-900 font-bold italic w-20 md:w-28">μ</th>
                                 </tr>
                             </thead>
                             <tbody id="table1Body">
-                                <!-- Generated Rows for Table 1 -->
+                                <!-- Рядки генеруються JS -->
                             </tbody>
                         </table>
                     </div>
@@ -73,51 +78,51 @@
 
                 <!-- Table 2 -->
                 <section>
-                    <h3 class="text-lg font-bold mb-4 academic-border pl-4 text-slate-800 uppercase tracking-tight">
-                        II. Дослідження залежності від роду поверхонь
+                    <h3 class="text-base md:text-lg font-bold mb-4 academic-border pl-4 text-slate-800 uppercase tracking-tight">
+                        II. Залежність від роду поверхонь
                     </h3>
-                    <div class="overflow-x-auto">
-                        <table class="w-full border-collapse border border-stone-400 text-center">
-                            <thead class="bg-stone-100 text-stone-700 text-xs">
+                    <div class="overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0">
+                        <table class="w-full border-collapse border border-stone-400 text-center min-w-[300px]">
+                            <thead class="bg-stone-100 text-stone-700 text-[10px] md:text-xs">
                                 <tr>
-                                    <th class="border border-stone-400 p-3 text-left">Матеріали поверхонь</th>
-                                    <th class="border border-stone-400 p-3 w-28">F<sub>тер</sub>, Н</th>
-                                    <th class="border border-stone-400 p-3 w-28">N, Н</th>
-                                    <th class="border border-stone-400 p-3 text-amber-900 font-bold italic w-28">μ</th>
+                                    <th class="border border-stone-400 p-2 text-left">Поверхні</th>
+                                    <th class="border border-stone-400 p-2 w-20 md:w-28">F<sub>тер</sub>, Н</th>
+                                    <th class="border border-stone-400 p-2 w-20 md:w-28">N, Н</th>
+                                    <th class="border border-stone-400 p-2 text-amber-900 font-bold italic w-20 md:w-28">μ</th>
                                 </tr>
                             </thead>
                             <tbody id="table2Body">
-                                <!-- Generated Rows for Table 2 -->
+                                <!-- Рядки генеруються JS -->
                             </tbody>
                         </table>
                     </div>
                 </section>
 
                 <!-- Conclusions -->
-                <section class="bg-stone-50 p-6 border border-stone-200 rounded italic shadow-inner">
-                    <h3 class="text-lg font-bold mb-4 text-slate-800 not-italic border-b border-stone-300 pb-2 uppercase tracking-tight">III. Висновки</h3>
-                    <div class="space-y-6">
+                <section class="bg-stone-50 p-4 md:p-6 border border-stone-200 rounded italic shadow-inner">
+                    <h3 class="text-base md:text-lg font-bold mb-4 text-slate-800 not-italic border-b border-stone-300 pb-2 uppercase tracking-tight">III. Висновки</h3>
+                    <div class="space-y-4">
                         <div>
-                            <p class="font-bold mb-2 text-slate-700 text-sm italic">1. При збільшенні сили нормального тиску (ваги) сила тертя:</p>
-                            <select id="q1" class="w-full p-2 bg-white border border-stone-300 outline-none focus:border-amber-600 text-sm italic">
-                                <option value="">— Оберіть відповідь —</option>
+                            <p class="font-bold mb-2 text-slate-700 text-xs md:text-sm italic">1. При збільшенні сили тиску сила тертя:</p>
+                            <select id="q1" class="w-full p-2 bg-white border border-stone-300 outline-none focus:border-amber-600 text-xs md:text-sm italic">
+                                <option value="">— Оберіть —</option>
                                 <option value="збільшується">збільшується</option>
                                 <option value="зменшується">зменшується</option>
                                 <option value="не змінюється">не змінюється</option>
                             </select>
                         </div>
                         <div>
-                            <p class="font-bold mb-2 text-slate-700 text-sm italic">2. Від площі дотичних поверхонь коефіцієнт тертя ковзання:</p>
-                            <select id="q2" class="w-full p-2 bg-white border border-stone-300 outline-none focus:border-amber-600 text-sm italic">
-                                <option value="">— Оберіть відповідь —</option>
+                            <p class="font-bold mb-2 text-slate-700 text-xs md:text-sm italic">2. Від площі поверхонь коефіцієнт тертя:</p>
+                            <select id="q2" class="w-full p-2 bg-white border border-stone-300 outline-none focus:border-amber-600 text-xs md:text-sm italic">
+                                <option value="">— Оберіть —</option>
                                 <option value="залежить">залежить</option>
                                 <option value="не залежить">не залежить</option>
                             </select>
                         </div>
                         <div>
-                            <p class="font-bold mb-2 text-slate-700 text-sm italic">3. Від роду матеріалів дотичних поверхонь коефіцієнт тертя:</p>
-                            <select id="q3" class="w-full p-2 bg-white border border-stone-300 outline-none focus:border-amber-600 text-sm italic">
-                                <option value="">— Оберіть відповідь —</option>
+                            <p class="font-bold mb-2 text-slate-700 text-xs md:text-sm italic">3. Від роду матеріалів коефіцієнт тертя:</p>
+                            <select id="q3" class="w-full p-2 bg-white border border-stone-300 outline-none focus:border-amber-600 text-xs md:text-sm italic">
+                                <option value="">— Оберіть —</option>
                                 <option value="залежить">залежить</option>
                                 <option value="не залежить">не залежить</option>
                             </select>
@@ -127,80 +132,76 @@
             </div>
 
             <!-- Action Area -->
-            <div id="actionArea" class="mt-10 text-center">
-                <button onclick="checkWork()" class="bg-slate-800 hover:bg-slate-900 text-amber-400 font-bold px-10 py-4 rounded border-2 border-amber-600 transition-all active:scale-95 shadow-md uppercase tracking-widest text-sm">
-                    Завершити та перевірити
+            <div id="actionArea" class="mt-8 text-center">
+                <button onclick="checkWork()" class="bg-slate-800 hover:bg-slate-900 text-amber-400 font-bold px-8 py-3 rounded border-2 border-amber-600 transition-all active:scale-95 shadow-md uppercase tracking-widest text-xs">
+                    Завершити
                 </button>
             </div>
 
             <!-- Result Panel -->
-            <div id="resultPanel" class="hidden mt-10 w-full bg-slate-900 p-8 rounded-lg shadow-xl text-white border-t-8 border-amber-500 text-center">
-                <div class="mb-4 text-amber-500 text-4xl">🏆</div>
-                <h2 id="finalName" class="text-2xl font-bold mb-1 uppercase tracking-tight"></h2>
-                <p id="finalGrade" class="text-amber-400 text-xl font-bold mb-6 italic"></p>
+            <div id="resultPanel" class="hidden mt-8 w-full bg-slate-900 p-6 rounded-lg shadow-xl text-white border-t-8 border-amber-500 text-center">
+                <div class="mb-2 text-amber-500 text-3xl">🏆</div>
+                <h2 id="finalName" class="text-xl font-bold mb-1 uppercase tracking-tight"></h2>
+                <p id="finalGrade" class="text-amber-400 text-lg font-bold mb-6 italic"></p>
                 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="downloadReport()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-extrabold px-8 py-3 rounded shadow flex items-center justify-center gap-2 transition-transform hover:-translate-y-1 text-sm">
+                <div class="flex flex-col gap-3 justify-center">
+                    <button onclick="downloadReport()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-extrabold px-6 py-3 rounded shadow transition-transform hover:-translate-y-1 text-xs">
                         💾 ЗБЕРЕГТИ ЗВІТ
                     </button>
-                    <button onclick="location.reload()" class="text-stone-400 hover:text-white flex items-center justify-center gap-2 text-xs">
-                        🔄 Почати заново
+                    <button onclick="location.reload()" class="text-stone-400 hover:text-white text-[10px] uppercase tracking-widest">
+                        🔄 Спробувати ще раз
                     </button>
                 </div>
             </div>
 
         </div>
 
-        <div class="bg-stone-100 p-3 text-center border-t border-stone-200">
-            <p class="text-[9px] font-bold uppercase tracking-widest text-stone-400 italic">Фізика 7 клас — Цифрова лабораторія</p>
+        <div class="bg-stone-100 p-2 text-center border-t border-stone-200">
+            <p class="text-[8px] font-bold uppercase tracking-widest text-stone-400 italic">Цифрова лабораторія 7 клас</p>
         </div>
     </div>
 
     <script>
-        const table1Conditions = [
-            'Брусок без вантажу',
-            'Брусок з 1 вантажем',
-            'Брусок з 2 вантажами'
-        ];
-
-        const table2Surfaces = [
-            'Дерево по пластику',
-            'Дерево по гумі',
-            'Дерево по металу'
-        ];
+        const table1Conditions = ['Без вантажу', '+ 1 вантаж', '+ 2 вантажі'];
+        const table2Surfaces = ['Дерево/Пластик', 'Дерево/Гума', 'Дерево/Метал'];
 
         let resultsT1 = [];
         let resultsT2 = [];
 
         function init() {
             const t1Body = document.getElementById('table1Body');
+            const t2Body = document.getElementById('table2Body');
+
+            // Очищення перед генерацією
+            t1Body.innerHTML = '';
+            t2Body.innerHTML = '';
+
             table1Conditions.forEach((cond, idx) => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td class="border border-stone-400 p-3 text-left italic text-xs md:text-sm bg-stone-50/30">${cond}</td>
-                    <td class="border border-stone-400 p-1">
-                        <input type="number" step="0.1" id="t1_f_${idx}" oninput="calcMu('t1', ${idx})" class="w-full p-2 text-center outline-none bg-white focus:bg-amber-50 border-none text-sm transition-colors">
+                    <td class="border border-stone-400 p-2 text-left italic text-[10px] md:text-sm bg-stone-50/30">${cond}</td>
+                    <td class="border border-stone-400 p-0">
+                        <input type="number" step="0.1" id="t1_f_${idx}" oninput="calcMu('t1', ${idx})" class="w-full h-10 p-1 text-center outline-none bg-white focus:bg-amber-50 border-none text-xs md:text-sm">
                     </td>
-                    <td class="border border-stone-400 p-1">
-                        <input type="number" step="0.5" id="t1_n_${idx}" oninput="calcMu('t1', ${idx})" class="w-full p-2 text-center outline-none bg-white focus:bg-amber-50 border-none text-sm transition-colors">
+                    <td class="border border-stone-400 p-0">
+                        <input type="number" step="0.5" id="t1_n_${idx}" oninput="calcMu('t1', ${idx})" class="w-full h-10 p-1 text-center outline-none bg-white focus:bg-amber-50 border-none text-xs md:text-sm">
                     </td>
-                    <td id="t1_mu_${idx}" class="border border-stone-400 p-3 font-bold text-amber-900 bg-stone-50/50 text-sm">—</td>
+                    <td id="t1_mu_${idx}" class="border border-stone-400 p-2 font-bold text-amber-900 bg-stone-50/50 text-[10px] md:text-sm">—</td>
                 `;
                 t1Body.appendChild(tr);
             });
 
-            const t2Body = document.getElementById('table2Body');
             table2Surfaces.forEach((surf, idx) => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td class="border border-stone-400 p-3 text-left italic text-xs md:text-sm bg-stone-50/30">${surf}</td>
-                    <td class="border border-stone-400 p-1">
-                        <input type="number" step="0.1" id="t2_f_${idx}" oninput="calcMu('t2', ${idx})" class="w-full p-2 text-center outline-none bg-white focus:bg-amber-50 border-none text-sm transition-colors">
+                    <td class="border border-stone-400 p-2 text-left italic text-[10px] md:text-sm bg-stone-50/30">${surf}</td>
+                    <td class="border border-stone-400 p-0">
+                        <input type="number" step="0.1" id="t2_f_${idx}" oninput="calcMu('t2', ${idx})" class="w-full h-10 p-1 text-center outline-none bg-white focus:bg-amber-50 border-none text-xs md:text-sm">
                     </td>
-                    <td class="border border-stone-400 p-1">
-                        <input type="number" step="0.5" id="t2_n_${idx}" oninput="calcMu('t2', ${idx})" class="w-full p-2 text-center outline-none bg-white focus:bg-amber-50 border-none text-sm transition-colors">
+                    <td class="border border-stone-400 p-0">
+                        <input type="number" step="0.5" id="t2_n_${idx}" oninput="calcMu('t2', ${idx})" class="w-full h-10 p-1 text-center outline-none bg-white focus:bg-amber-50 border-none text-xs md:text-sm">
                     </td>
-                    <td id="t2_mu_${idx}" class="border border-stone-400 p-3 font-bold text-amber-900 bg-stone-50/50 text-sm">—</td>
+                    <td id="t2_mu_${idx}" class="border border-stone-400 p-2 font-bold text-amber-900 bg-stone-50/50 text-[10px] md:text-sm">—</td>
                 `;
                 t2Body.appendChild(tr);
             });
@@ -221,7 +222,7 @@
         function checkWork() {
             const name = document.getElementById('studentName').value.trim();
             if (name.length < 3) {
-                alert("Будь ласка, введіть Прізвище та Ім'я!");
+                alert("Впишіть Прізвище та Ім'я!");
                 return;
             }
 
@@ -229,27 +230,24 @@
             resultsT1 = [];
             resultsT2 = [];
 
-            // Перевірка Таблиці 1 (30 балів)
             for (let i = 0; i < 3; i++) {
                 const mu = parseFloat(document.getElementById(`t1_mu_${i}`).innerText);
-                const isCorrect = (mu >= 0.15 && mu <= 0.45);
+                const isCorrect = (mu >= 0.1 && mu <= 0.6);
                 if (isCorrect) score += 10;
                 resultsT1.push({ cond: table1Conditions[i], mu, isCorrect });
                 markInput(`t1_f_${i}`, isCorrect);
                 markInput(`t1_n_${i}`, isCorrect);
             }
 
-            // Перевірка Таблиці 2 (30 балів)
             for (let i = 0; i < 3; i++) {
                 const mu = parseFloat(document.getElementById(`t2_mu_${i}`).innerText);
-                const isCorrect = !isNaN(mu) && mu > 0.1;
+                const isCorrect = !isNaN(mu) && mu > 0.05;
                 if (isCorrect) score += 10;
                 resultsT2.push({ surf: table2Surfaces[i], mu, isCorrect });
                 markInput(`t2_f_${i}`, isCorrect);
                 markInput(`t2_n_${i}`, isCorrect);
             }
 
-            // Перевірка висновків (40 балів)
             if (document.getElementById('q1').value === 'збільшується') score += 10;
             if (document.getElementById('q2').value === 'не залежить') score += 15;
             if (document.getElementById('q3').value === 'залежить') score += 15;
@@ -262,7 +260,40 @@
             document.getElementById('actionArea').classList.add('hidden');
             document.getElementById('resultPanel').classList.remove('hidden');
             document.getElementById('finalName').innerText = name;
-            document.getElementById('finalGrade').innerText = `Оцінка: ${finalGrade} / 12 (${score}%)`;
+            document.getElementById('finalGrade').innerText = `Оцінка: ${finalGrade} / 12`;
         }
 
         function markInput(id, isCorrect) {
+            const el = document.getElementById(id);
+            if(el) el.style.backgroundColor = isCorrect ? '#f0fdf4' : '#fef2f2';
+        }
+
+        function downloadReport() {
+            const name = document.getElementById('studentName').value;
+            const score = document.getElementById('displayScore').innerText;
+            const date = new Date().toLocaleString('uk-UA');
+
+            let content = `ЗВІТ: ЛАБОРАТОРНА РОБОТА №7\nУчень: ${name}\nДата: ${date}\nОцінка: ${score}/12\n\n`;
+            content += `Результати дослідів:\n`;
+            resultsT1.forEach(r => content += `${r.cond}: mu=${r.mu || '—'}\n`);
+            resultsT2.forEach(r => content += `${r.surf}: mu=${r.mu || '—'}\n`);
+            
+            const blob = new Blob([content], {type: 'text/plain;charset=utf-8'});
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `Lab7_${name.replace(/\s+/g, '_')}.txt`;
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => { document.body.removeChild(link); URL.revokeObjectURL(url); }, 100);
+        }
+
+        // Більш надійний запуск для мобільних
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
