@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота №7 - Фізика 7 клас</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Cambria', 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', serif;
+            background-color: #f5f5f4;
+        }
+        .academic-border {
+            border-left: 4px solid #d97706;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 text-slate-900">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden border border-stone-300">
+        
+        <!-- Header -->
+        <div class="bg-slate-800 p-8 text-white border-b-4 border-amber-600">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <h1 class="text-3xl font-bold mb-1 tracking-tight uppercase">Лабораторна робота №7</h1>
+                    <p class="text-amber-400 text-lg italic tracking-wide">«Визначення коефіцієнта тертя ковзання»</p>
+                </div>
+                <div class="bg-white/10 p-4 rounded border border-white/20 text-center min-w-[120px]">
+                    <span class="block text-[10px] uppercase font-bold tracking-widest opacity-60 mb-1">Результат</span>
+                    <span id="displayScore" class="text-4xl font-bold text-amber-500">0</span>
+                    <small class="text-lg opacity-40">/ 12</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-6 md:p-12">
+            
+            <!-- Student Info -->
+            <div class="mb-12 p-6 bg-stone-50 border border-stone-200 rounded shadow-sm">
+                <label class="block text-xs font-bold uppercase text-stone-500 mb-2 tracking-widest">Виконав(ла) учень/учениця:</label>
+                <input type="text" id="studentName" placeholder="Впишіть Прізвище та Ім'я" 
+                    class="w-full p-2 bg-transparent border-b-2 border-stone-300 outline-none transition-all text-2xl font-bold italic focus:border-amber-600">
+            </div>
+
+            <div class="space-y-12">
+                <!-- Table -->
+                <section>
+                    <h3 class="text-xl font-bold mb-6 academic-border pl-4 flex items-center gap-2">
+                        I. Результати вимірювань та обчислень
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-stone-400">
+                            <thead class="bg-stone-100 text-stone-700 text-sm">
+                                <tr>
+                                    <th class="border border-stone-400 p-3 text-left">Вид поверхні</th>
+                                    <th class="border border-stone-400 p-3">Fтер, Н</th>
+                                    <th className="border border-stone-400 p-3">N, Н</th>
+                                    <th class="border border-stone-400 p-3 text-amber-900 font-bold italic text-center">mu = Fтер / N</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- Generated JS Rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Conclusions -->
+                <section class="bg-stone-50 p-8 border border-stone-200 rounded italic shadow-inner">
+                    <h3 class="text-xl font-bold mb-6 text-slate-800 not-italic border-b border-stone-300 pb-2">II. Висновки</h3>
+                    <div class="space-y-8">
+                        <div>
+                            <p class="font-bold mb-3 text-slate-700 text-sm italic">1. При збільшенні сили нормального тиску (ваги) сила тертя:</p>
+                            <select id="q1" class="w-full p-3 bg-white border border-stone-300 outline-none focus:border-amber-600">
+                                <option value="">— Оберіть відповідь —</option>
+                                <option value="збільшується">збільшується</option>
+                                <option value="зменшується">зменшується</option>
+                                <option value="не змінюється">не змінюється</option>
+                            </select>
+                        </div>
+                        <div>
+                            <p class="font-bold mb-3 text-slate-700 text-sm italic">2. Від площі дотичних поверхонь коефіцієнт тертя ковзання:</p>
+                            <select id="q2" class="w-full p-3 bg-white border border-stone-300 outline-none focus:border-amber-600">
+                                <option value="">— Оберіть відповідь —</option>
+                                <option value="залежить">залежить</option>
+                                <option value="не залежить">не залежить</option>
+                            </select>
+                        </div>
+                        <div>
+                            <p class="font-bold mb-3 text-slate-700 text-sm italic">3. Від роду матеріалів дотичних поверхонь коефіцієнт тертя:</p>
+                            <select id="q3" class="w-full p-3 bg-white border border-stone-300 outline-none focus:border-amber-600">
+                                <option value="">— Оберіть відповідь —</option>
+                                <option value="залежить">залежить</option>
+                                <option value="не залежить">не залежить</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Action Area -->
+            <div id="actionArea" class="mt-12 flex flex-col items-center gap-6">
+                <button onclick="checkWork()" class="bg-slate-800 hover:bg-slate-900 text-amber-400 font-bold px-12 py-5 rounded-md border-2 border-amber-600 transition-all active:scale-95 shadow-xl uppercase tracking-widest">
+                    Перевірити та завершити
+                </button>
+            </div>
+
+            <!-- Result Panel (Hidden by default) -->
+            <div id="resultPanel" class="hidden mt-12 w-full bg-slate-900 p-8 rounded-lg shadow-2xl text-white border-t-8 border-amber-500 text-center">
+                <div id="trophyIcon" class="mb-4 text-amber-500 text-5xl">🏆</div>
+                <h2 id="finalName" class="text-3xl font-bold mb-2 uppercase"></h2>
+                <p id="finalGrade" class="text-amber-400 text-2xl font-bold mb-8 italic"></p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="downloadReport()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-extrabold px-10 py-4 rounded shadow-lg flex items-center justify-center gap-2 transition-transform hover:-translate-y-1">
+                        💾 ЗАВАНТАЖИТИ ЗВІТ (.txt)
+                    </button>
+                    <button onclick="location.reload()" class="text-stone-400 hover:text-white flex items-center justify-center gap-2 text-sm">
+                        🔄 Почати заново
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bg-stone-100 p-4 text-center border-t border-stone-200">
+            <p class="text-[10px] font-bold uppercase tracking-widest text-stone-400 italic">Лабораторна робота №7 — Фізика 7 клас</p>
+        </div>
+    </div>
+
+    <script>
+        const surfaces = [
+            'Дерево по дереву',
+            'Дерево по дереву (з вантажем)',
+            'Дерево по пластику/гумі'
+        ];
+
+        let results = [];
+
+        function init() {
+            const tbody = document.getElementById('tableBody');
+            surfaces.forEach((surface, idx) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="border border-stone-400 p-3 italic text-sm">${surface}</td>
+                    <td class="border border-stone-400 p-1">
+                        <input type="number" step="0.1" id="f_${idx}" oninput="updateMu(${idx})" class="w-full p-2 text-center outline-none bg-stone-50 focus:bg-white border-none">
+                    </td>
+                    <td class="border border-stone-400 p-1">
+                        <input type="number" step="0.5" id="n_${idx}" oninput="updateMu(${idx})" class="w-full p-2 text-center outline-none bg-stone-50 focus:bg-white border-none">
+                    </td>
+                    <td id="mu_${idx}" class="border border-stone-400 p-3 text-center font-bold text-amber-900 bg-stone-50/50">—</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateMu(idx) {
+            const f = parseFloat(document.getElementById(`f_${idx}`).value);
+            const n = parseFloat(document.getElementById(`n_${idx}`).value);
+            const muCell = document.getElementById(`mu_${idx}`);
+            
+            if (!isNaN(f) && !isNaN(n) && n !== 0) {
+                const mu = (f / n).toFixed(2);
+                muCell.innerText = mu;
+            } else {
+                muCell.innerText = "—";
+            }
+        }
+
+        function checkWork() {
+            const name = document.getElementById('studentName').value.trim();
+            if (name.length < 3) {
+                alert("Будь ласка, введіть повне Прізвище та Ім'я!");
+                return;
+            }
+
+            let score = 0;
+            results = [];
+
+            // Перевірка таблиці (60 балів)
+            for (let i = 0; i < 3; i++) {
+                const f = document.getElementById(`f_${i}`).value;
+                const n = document.getElementById(`n_${i}`).value;
+                const mu = parseFloat(document.getElementById(`mu_${i}`).innerText);
+                let isCorrect = false;
+
+                if (i < 2) isCorrect = (mu >= 0.15 && mu <= 0.45);
+                else isCorrect = (mu >= 0.4);
+
+                if (isCorrect) score += 20;
+                results.push({ surface: surfaces[i], f, n, mu, isCorrect });
+                
+                // Візуальна індикація
+                document.getElementById(`f_${i}`).className = `w-full p-2 text-center outline-none ${isCorrect ? 'bg-green-50' : 'bg-red-50'}`;
+                document.getElementById(`n_${i}`).className = `w-full p-2 text-center outline-none ${isCorrect ? 'bg-green-50' : 'bg-red-50'}`;
+            }
+
+            // Перевірка висновків (40 балів)
+            const q1 = document.getElementById('q1').value;
+            const q2 = document.getElementById('q2').value;
+            const q3 = document.getElementById('q3').value;
+
+            if (q1 === 'збільшується') score += 10;
+            if (q2 === 'не залежить') score += 15;
+            if (q3 === 'залежить') score += 15;
+
+            // Блокування полів
+            document.getElementById('studentName').disabled = true;
+            document.querySelectorAll('input, select').forEach(el => el.disabled = true);
+
+            // Відображення результатів
+            const finalGrade = Math.round((score / 100) * 12);
+            document.getElementById('displayScore').innerText = finalGrade;
+            document.getElementById('actionArea').classList.add('hidden');
+            document.getElementById('resultPanel').classList.remove('hidden');
+            document.getElementById('finalName').innerText = name;
+            document.getElementById('finalGrade').innerText = `Оцінка: ${finalGrade} / 12 (${score}%)`;
+        }
+
+        function downloadReport() {
+            const name = document.getElementById('studentName').value;
+            const score = document.getElementById('displayScore').innerText;
+            const q1 = document.getElementById('q1').value;
+            const q2 = document.getElementById('q2').value;
+            const q3 = document.getElementById('q3').value;
+            const date = new Date().toLocaleString('uk-UA');
+
+            let content = `========================================\n`;
+            content += `ЗВІТ ЛАБОРАТОРНОЇ РОБОТИ №7\n`;
+            content += `========================================\n\n`;
+            content += `Учень/Учениця: ${name}\n`;
+            content += `Дата: ${date}\n`;
+            content += `ОЦІНКА: ${score} / 12\n\n`;
+            
+            content += `1. РЕЗУЛЬТАТИ ТАБЛИЦІ:\n`;
+            results.forEach(r => {
+                content += ` - ${r.surface}: F=${r.f}H, N=${r.n}H => mu=${r.mu} [${r.isCorrect ? 'OK' : 'Помилка'}]\n`;
+            });
+            
+            content += `\n2. ВИСНОВКИ:\n`;
+            content += ` - Сила тертя від ваги: ${q1}\n`;
+            content += ` - mu від площі: ${q2}\n`;
+            content += ` - mu від матеріалу: ${q3}\n`;
+            content += `\n========================================`;
+
+            const element = document.createElement('a');
+            const file = new Blob([content], {type: 'text/plain'});
+            element.href = URL.createObjectURL(file);
+            element.download = `Lab7_Physics_Report_${name.replace(/\s+/g, '_')}.txt`;
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
